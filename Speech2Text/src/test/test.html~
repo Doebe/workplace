@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8"/>
+  </head>
+  <body>
+<script>
+var watson = require('watson-developer-cloud');
+var speech_to_text = watson.speech_to_text({
+  username: 'c0081524-782d-46dc-a096-e82e6810dc1d',
+  password: 'nZwQHkEm6HXC',
+  version: 'v1'
+});
+
+var params = {
+  audio: fs.createReadStream('./0001.flac'),
+  content_type: 'audio/flac'
+};
+
+speech_to_text.recognize(params, function(err, transcript) {
+  if (err)
+    console.log(err);
+  else
+    console.log(JSON.stringify(transcript, null, 2));
+});
+</script>
+<!--    <script src="test.js"></script>-->
+  </body>
+</html>
+

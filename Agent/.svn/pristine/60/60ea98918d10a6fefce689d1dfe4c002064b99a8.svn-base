@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>sound test</title>
+	<meta charset="utf-8">	
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+	
+		var url = "http://localhost:88/HapGLService.svc";
+		
+		var Sound = (function () {
+	   		var df = document.createDocumentFragment();
+		    return function Sound(src) {
+		        var snd = new Audio(src);
+		        df.appendChild(snd); // keep in fragment until finished playing
+		        snd.addEventListener('ended', function () {df.removeChild(snd);});
+		        snd.play();
+		        return snd;
+		    }
+		}());
+
+		var hapglservice_speak_callback = function(response) {
+			var speechInfo = JSON.parse(response);
+			var snd = Sound(speechInfo.audioFormat + "," + speechInfo.audioStream);
+		};
+
+		$.ajax({	
+			type: 'GET',
+			// url: "http://localhost:88/HapGLService.svc/speakssml?ssml=" + encodeURI('<?xml version="1.0"?><speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.0" xml:lang="en-US"><metadata><dc:title xml:lang="en">Telephone Menu: Level 1</dc:title></metadata><p><s xml:lang="en-US"><prosody volume="100"> This is extra <mark name="here"/> high pitch. </prosody ></s></p></speak>&format=mp3')
+			url: "http://localhost:88/HapGLService.svc/speak?text=" + encodeURI('Hello world this is an amazing day') 
+		}).done(hapglservice_speak_callback);
+
+	</script>
+</head>
+<body>
+</body>
+</html>

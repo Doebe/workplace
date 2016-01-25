@@ -1,0 +1,12 @@
+-rw-rw-r-- 1 zlpan zlpan     0 Oct 12 20:49 DDOS
+-rw-rw-r-- 1 zlpan zlpan  3686 Oct 14 14:12 frog.png
+-rw-rw-r-- 1 zlpan zlpan  8788 Oct 14 14:12 index.jpeg
+-rw-rw-r-- 1 zlpan zlpan     0 Oct 14 16:16 input.txt
+-rw-rw-r-- 1 zlpan zlpan   733 Oct 14 15:01 list.txt
+-rw-rw-r-- 1 zlpan zlpan   129 Oct 14 15:00 ls-remote.txt
+-rwxrwxr-x 1 zlpan zlpan 23332 Oct 14 15:00 peer
+-rw-rw-r-- 1 zlpan zlpan 10328 Oct 14 15:00 Peer.c
+-rwxrwxr-x 1 zlpan zlpan 25155 Oct 14 13:32 tracker
+-rw-rw-r-- 1 zlpan zlpan  8525 Oct 13 18:10 Tracker.c
+-rw-rw-r-- 1 zlpan zlpan     0 Oct  8 17:45 zhenglin-pan-homework-2
+-rw-rw-r-- 1 zlpan zlpan  3244 Oct 12 16:39 zhenglin_pan_offhand_1.txt

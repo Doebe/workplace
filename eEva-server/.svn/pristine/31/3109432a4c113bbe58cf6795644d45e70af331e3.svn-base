@@ -1,0 +1,24 @@
+1.	sudo ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled
+2.	sudo ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled
+3.	a2dissite <defaultconfig> (replace <defaultconfig> with the .conf file in /etc/apache2/sites-enabled)
+4.	sudo gedit /etc/apache2/sites-available/proxiedhosts.conf
+5.	copy the following code to proxiedhosts.conf
+	<VirtualHost *:80>
+	#
+	ServerName localhost
+	DocumentRoot /var/www/html/
+	#
+		ProxyPreserveHost On
+		ProxyRequests off
+		ProxyPass /node/ http://localhost:3000/
+		ProxyPassReverse /node/ http://localhost:3000/
+	#
+	</VirtualHost>
+6.	sudo ln -s /etc/apache2/sites-available/proxiedhosts.conf /etc/apache2/sites-enabled
+7.	if using localhost, add the following line to /etc/apache2/apache2.conf
+	ServerName localhost
+8.	copy line 7 and line 11-17 from index.html to the website html file
+9.	copy node directory to destination directory
+10. cd into node directory and start node.js server by typing the following command
+	node app.js
+11. go to the url of the website and check console. speech recognition messages should be printed there

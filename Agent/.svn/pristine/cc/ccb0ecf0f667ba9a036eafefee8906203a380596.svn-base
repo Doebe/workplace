@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Web Speech API Demo</title>
+<head>
+<script src="../../../app/js/common/jquery-2.1.4.min.js"></script>
+<script src="../../../app/js/common/three.min.js"></script>
+<script src="../../../app/js/common/prototype.js"></script>
+<script src="../../../app/js/mainframe.classes.js"></script>
+</head>
+<body>
+<script src="./mainframe.js"></script> <!-- note: local mainframe file for test -->
+<link rel="stylesheet" type="text/css" href="css/webkit-speech.css">
+<h1 class="center" id="headline">
+ <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
+    ChromeSpeech</a> Demonstration</h1> 
+
+<p class="center"> Speak while the microphone is pulsing. </br>
+ Text will output to console.</p>
+<div class="center">
+     <img id="start_img" src="mic.gif" alt="Start"></button>
+</div>
+
+</body>

@@ -1,0 +1,32 @@
+<h2>Mainframe tests</h2>
+<hr/>
+<a href="./TestConfig">TestConfig</a> :: Just an initial test to see if modules are correctly linked
+<br/>
+<br/>
+<a href="./TestVideo">TestVideo</a> :: Three modules to fetch, process and display video stream
+<br/>
+<br/>
+<a href="./TestWebGL">TestWebGL</a> :: Simple webgl scene module test
+<br/>
+<br/>
+<a href="./TestMainframeDiagram">TestMainframeDiagram</a> :: Mainframe configuration diagram
+<br/>
+<br/>
+<a href="./TestMirroring">TestMirroring</a> :: Simple facial mirorring behavior for character
+<br/>
+<br/>
+<a href="./Demo1">Demo 1</a> :: WebGL App demo 1
+<br/>
+<br/>
+<a href="./TestSpeech">TestSpeech</a> :: Windows SAPI Speech Synthesis test
+<br/>
+<br/>
+<a href="./MyTest">ChromeSpeech</a> :: ChromeSpeech Recognition test
+<br/>
+<br/>
+<a href="./TestCallBack">POS and Sentiment Callback</a> :: text callback from chromespeech
+<br/>
+<br/>
+<a href="./TestTextMultiChoice">Text-Based</a> :: Text-Based multiple choice input
+<br/>
+<br/>

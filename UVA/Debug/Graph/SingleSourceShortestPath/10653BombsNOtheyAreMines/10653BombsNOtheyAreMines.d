@@ -1,0 +1,2 @@
+Graph/SingleSourceShortestPath/10653BombsNOtheyAreMines/10653BombsNOtheyAreMines.d: \
+ ../Graph/SingleSourceShortestPath/10653BombsNOtheyAreMines/10653BombsNOtheyAreMines.cpp

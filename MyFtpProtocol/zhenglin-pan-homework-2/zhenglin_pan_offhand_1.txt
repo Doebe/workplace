@@ -1,0 +1,65 @@
+1   Start mininet with "sudo mn --topo linear,5 --link tc,bw=20,delay=50ms"
+	sudo mn --topo linear,5 --link tc,bw=20,delay=50ms
+
+2   Draw the topology of the network. How did you find out?
+	h1	h2	h3	h4	h5
+	|	|	|	|	|
+	|50ms	|50ms	|50ms	|50ms	|50ms
+	|	|	|	|	|
+	s1------s2------s3------s4------s5	c0
+	   50ms    50ms    50ms    50ms
+
+linear means each switch has only 1 host and all switches are connected in a line.
+
+3   What's h3's ip address? How did you find out?
+	h3's ip address is h3-eth0:10.0.0.3
+
+	mininet> h3 ifconfig -a
+	h3-eth0   Link encap:Ethernet  HWaddr 3e:64:75:de:19:07  
+		  inet addr:10.0.0.3  Bcast:10.255.255.255  Mask:255.0.0.0
+		  inet6 addr: fe80::3c64:75ff:fede:1907/64 Scope:Link
+		  UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+		  RX packets:869 errors:0 dropped:0 overruns:0 frame:0
+		  TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+		  collisions:0 txqueuelen:1000 
+		  RX bytes:164018 (164.0 KB)  TX bytes:648 (648.0 B)
+
+	lo        Link encap:Local Loopback  
+		  inet addr:127.0.0.1  Mask:255.0.0.0
+		  inet6 addr: ::1/128 Scope:Host
+		  UP LOOPBACK RUNNING  MTU:65536  Metric:1
+		  RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+		  TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+		  collisions:0 txqueuelen:0 
+		  RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+4   Send ping from h2 to h4? How did you do that? What is the delay? Is it what you expected? Explain.
+	mininet> h2 ping -c 1 h4
+	PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+	64 bytes from 10.0.0.4: icmp_seq=1 ttl=64 time=818 ms
+
+	--- 10.0.0.4 ping statistics ---
+	1 packets transmitted, 1 received, 0% packet loss, time 0ms
+	rtt min/avg/max/mdev = 818.299/818.299/818.299/0.000 ms
+
+	mininet> h2 ping -c 1 h4
+	PING 10.0.0.4 (10.0.0.4) 56(84) bytes of data.
+	64 bytes from 10.0.0.4: icmp_seq=1 ttl=64 time=401 ms
+
+	--- 10.0.0.4 ping statistics ---
+	1 packets transmitted, 1 received, 0% packet loss, time 0ms
+	rtt min/avg/max/mdev = 401.990/401.990/401.990/0.000 ms
+
+	The first ping delay is abnormally large because the controller spends time calculating the route. Following ping have regular delay because the routes have already been calculated and stored. The delay is about 400 ms because based on the topology, the message travels from h2 to h4 to h2, traversing 8 links. 8 * 50 = 400 ms.
+
+5   Set up iperf from h1 to h3. How did you do that? What's the throughput you observed? Is it expected? Explain.
+
+	mininet> iperf h1 h3
+	*** Iperf: testing TCP bandwidth between h1 and h3 
+	*** Results: ['13.0 Mbits/sec', '16.4 Mbits/sec']
+
+	Expected throughput:
+	Assume 20 Mbits are sent from h1 to h3. It will take 1 sec to transmit all bits from application layer to ethernet layer (bw is 20 Mbits/s). For all the bits ready to be sent, the propogation delay is 50 * 4 = 200 ms = 0.2 sec. Therefore, the throughput from h1 to h3 is 20 / (1 + 0.2) = 16.67 (Mbits/s). When the message travels back to h1, it takes another 0.2 sec. Therefore, the throughput from h1 to h3 to h1 is 20 / (1 + 0.2 + 0.2) = 14.29 (Mbits/s).
+
+	Reason:
+	The observed result does not match with expected result. This difference can be caused by many reasons such as virtual machine scheduling, computer internal flows, and some other uncontrollable factors.

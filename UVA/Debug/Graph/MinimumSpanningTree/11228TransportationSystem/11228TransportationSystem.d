@@ -1,0 +1,2 @@
+Graph/MinimumSpanningTree/11228TransportationSystem/11228TransportationSystem.d: \
+ ../Graph/MinimumSpanningTree/11228TransportationSystem/11228TransportationSystem.cpp

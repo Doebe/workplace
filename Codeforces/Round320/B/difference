@@ -1,0 +1,8 @@
+36c36
+<     memset(used, 0, 1000);
+---
+>     MEM(used, 0);
+53c53
+<     for (int i = 1; i <= 2 * n; i++) {
+---
+>     for (int i = 1; i <= 2*n; i++) {

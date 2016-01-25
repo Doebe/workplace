@@ -1,0 +1,6 @@
+sudo apt-get install python-numpy
+sudo apt-get install python-scipy
+
+change build_patch.py 3 places as following
+clfg = GridSearchCV(estimator=SVR(kernel="linear"), param_grid={'C':[0.1], 'epsilon' : [0.4, 0.3, 0.2, 0.1]}, verbose=100)
+[add 'param_grid=' before {}, remove loss_func=xxx]

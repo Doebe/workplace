@@ -1,0 +1,17 @@
+5 5
+wlwww
+wwllw
+wwwww
+wwwww
+wlwww
+1 3
+
+5 5
+wwwww
+lwlll
+wwwww
+wwwww
+wwwww
+1 3
+
+

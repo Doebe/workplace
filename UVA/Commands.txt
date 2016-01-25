@@ -1,0 +1,19 @@
+pwd					//current position
+ls					//list
+cd					//change directory
+					//cd Workplace/UVA/
+g++					//compile
+					//g++ name
+./a.out				//excute
+					//./a.out < input.txt
+nano				//manipulate
+					//nano input.txt
+gedit				//manipulate with UI
+					//gedit input.txt
+mkdir				//create folder
+					//mkdir problems
+cd ..				//go up
+rm					//remove
+rm -r problems		//remove folder problem
+ctrl + shift + c	//copy
+ctrl + shift + v	//paste

@@ -1,0 +1,52 @@
+1.	install node.js by typing following commands
+	sudo apt-get update
+	sudo apt-get install nodejs
+	sudo apt-get install npm
+
+2.	enable proxy modules
+	sudo ln -s /etc/apache2/mods-available/proxy.load /etc/apache2/mods-enabled
+	sudo ln -s /etc/apache2/mods-available/proxy_http.load /etc/apache2/mods-enabled
+
+3.	add the following code to the current enabled config file
+	<VirtualHost *:80>
+	#
+	ServerName localhost
+	DocumentRoot /var/www/html/
+	#
+		ProxyPreserveHost On
+		ProxyRequests off
+		ProxyPass /node/ http://localhost:3000/
+		ProxyPassReverse /node/ http://localhost:3000/
+	#
+	</VirtualHost>
+
+4.	if using localhost, add the following line to /etc/apache2/apache2.conf
+	ServerName localhost
+
+5.	modify the website html file body as the following
+	<body onload="s2t()">
+	paste the following code to the website html file
+	<script type="text/javascript" src="/node/js/css_browser_selector.js"></script>
+	<script type="text/javascript" src="/node/js/browser-detector.js"></script>
+	<script type="text/javascript" src="/node/js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="/node/js/speech-recognizer.js"></script>
+	<script type="text/javascript" src="/node/js/socket.io.js"></script>
+	<script type="text/javascript" src="/node/js/demo.js"></script>
+	<script type="text/javascript" src="/node/js/speech.js"></script>
+
+6.	copy node directory to destination directory
+
+7.	cd into node directory and start node.js server by typing the following command
+	node app.js
+	(if there is any error saying missing modules, type the following command with corresponding module name, 
+	replace <defaultconfig> with the module name shown in the error message, e.g. express)
+	npm install <module_name>
+
+8.	go to the url of the website and check console. speech recognition messages should be printed there
+
+
+Alternatives before step 3 if new config file is preferred:
+	a2dissite <defaultconfig> (replace <defaultconfig> with the .conf file in /etc/apache2/sites-enabled, e.g. 000default.conf)
+	sudo gedit /etc/apache2/sites-available/proxiedhosts.conf
+	sudo ln -s /etc/apache2/sites-available/proxiedhosts.conf /etc/apache2/sites-enabled
+

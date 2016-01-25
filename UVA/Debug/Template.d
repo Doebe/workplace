@@ -1,0 +1,1 @@
+Template.d: ../Template.cpp
